@@ -23,7 +23,9 @@ def create_new_window():
     init_game_widgets()
 
 def init_game_widgets():
-    """ Initialize widgets for the Hangman game so that it is functional for the user"""
+    """ 
+    Initialize widgets for the Hangman game so that it is functional for the user
+    """
     global word_label, attempts_label, letter_entry, guess_button, reset_button, hints_button, canvas
     #Create GUI elements 
     word_label = tk.Label(new_window, text="", font=("Times New Roman", 20), bg = "lightpink", fg = "darkred")
@@ -55,7 +57,9 @@ def init_game_widgets():
     update_game_display()
 
 def update_game_display():
-    """ Update the game display so the user knows where they stand in the game """
+    """ 
+    Update the game display so the user knows where they stand in the game 
+    """
     update_word_display()
     update_attempts_display()
     draw_hangman()
@@ -116,27 +120,38 @@ words = {"python": "a type of snake",
 word_to_guess = random.choice(list(words.keys()))
 guessed_letters = []
 attempts = 6
-
-#Function to update the attempts display 
+ 
 def update_attempts_display():
+    """
+    Function to update the attempts display
+    """
     global attempts
     attempts_label.config(text=f"Attempts left: {attempts}")
 
-#Function to check if the game is over/finished 
-def is_game_over(): 
+def is_game_over():
+    """
+    Function to check if the game is over/finished
+    """
     return check_win() or check_loss() 
 
-#Function to check is the player has won the game
-def check_win(): 
+def check_win():
+    """
+    Function to check is the player has won the game
+    """
     return all(letter in guessed_letters for letter in word_to_guess) 
     
-#Function to check if the player has lost the game
 def check_loss():
+    """
+    Function to check is the player has lost the game
+    """
     global attempts
     return attempts == 0 
 
-#Function to handle a letter guess
-def guess_letters(): 
+
+def guess_letters():
+    """
+    Function to handle a letter guess
+    """
     global attempts, word_to_guess, guessed_letters
     letter = letter_entry.get().strip().lower() 
     if letter.isalpha() and len(letter) == 1: 
@@ -160,8 +175,11 @@ def guess_letters():
         letter_entry.delete(0, tk.END) #Clear the input field
     else: 
         messagebox.showinfo("Hangman", "Please enter a single letter.")
-#Function to reset the game
-def reset_game(): 
+
+def reset_game():
+    """
+    Function to reset the game
+    """
     global word_to_guess, guessed_letters, attempts
     word_to_guess = random.choice(list(words.keys()))
     guessed_letters = []
@@ -172,8 +190,10 @@ def reset_game():
     hints_button.config(state=tk.NORMAL)
     hints()
 
-#Function to update the word display 
 def update_word_display(): 
+    """
+    Function to update the word display 
+    """
     display_word = ""
     for letter in word_to_guess: 
         if letter in guessed_letters: 
@@ -184,10 +204,10 @@ def update_word_display():
         display_word += ""
         word_label.config(text=display_word)
 
-
-
-#Function to draw the hangman figure 
 def draw_hangman(): 
+    """
+    Function drawing circles and lines to create the hangman figure
+    """
     canvas.delete("hangman")
     if attempts < 6: 
         canvas.create_oval(125, 125, 175, 175, width=4, tags="hangman", outline = "white") #Head 
@@ -214,11 +234,6 @@ def hints():
         hints_button.config(state=tk.DISABLED)
     else:
         None
-
-
-
-#Run the Hangman Game! 
-
 
 #this starts the application 
 root.mainloop()
