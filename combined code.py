@@ -91,7 +91,7 @@ no_button.pack(pady = 20)
 open_game_button.pack(pady = 20)
 
 #after this is the code for the actual game
-# List of words and hints for the game 
+#dictionary of words and hints for the game 
 words = {"python": "a type of snake", 
          "amazon": "a place for shopping", 
          "jellyfish": "a sea animal with tentacles", 
