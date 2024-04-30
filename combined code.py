@@ -19,10 +19,10 @@ def create_new_window():
         new_window.lift()
 
 
-    # Initialize game widgets
-    init_game_widgets()
+    # Initialize game widgets so that they appear on the new window
+    initialize_game_widgets()
 
-def init_game_widgets():
+def initialize_game_widgets():
     """ 
     Initialize widgets for the Hangman game so that it is functional for the user
     """
@@ -45,7 +45,7 @@ def init_game_widgets():
     canvas.create_line(150, 100, 150, 120, width=4, fill = "darkred") #Beam
 
 
-    #Pack GUI Elements 
+    #Pack GUI Elements so that they appear for the user
 
     word_label.pack()
     attempts_label.pack()
